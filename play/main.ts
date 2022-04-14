@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import '//at.alicdn.com/t/font_3186874_xpvv6829cfi.js'
 import '@element-plus/theme-chalk/src/index.scss'
 ;(async () => {
   const apps = import.meta.glob('./src/*.vue')

@@ -23,6 +23,14 @@
         <component :is="loadingIcon" />
       </el-icon>
     </template>
+    <svg
+      v-else-if="svgIcon"
+      :width="_svgSize"
+      :height="_svgSize"
+      :class="nsSvg.b()"
+    >
+      <use :xlink:href="`#${svgIcon}`" />
+    </svg>
     <el-icon v-else-if="icon || $slots.icon">
       <component :is="icon" v-if="icon" />
       <slot v-else name="icon" />
@@ -61,12 +69,14 @@ const slots = useSlots()
 const buttonGroupContext = inject(buttonGroupContextKey, undefined)
 const globalConfig = useGlobalConfig('button')
 const ns = useNamespace('button')
+const nsSvg = useNamespace('svg')
 const { form } = useFormItem()
 const _size = useSize(computed(() => buttonGroupContext?.size))
 const _disabled = useDisabled()
 const _ref = ref<HTMLButtonElement>()
 
 const _type = computed(() => props.type || buttonGroupContext?.type || '')
+const _svgSize = computed(() => (props.size === 'large' ? 24 : 16))
 const autoInsertSpace = computed(
   () => props.autoInsertSpace ?? globalConfig.value?.autoInsertSpace ?? false
 )

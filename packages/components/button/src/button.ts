@@ -28,6 +28,10 @@ export const buttonProps = buildProps({
     type: iconPropType,
     default: '',
   },
+  svgIcon: {
+    type: String,
+    default: '',
+  },
   nativeType: {
     type: String,
     values: buttonNativeTypes,
