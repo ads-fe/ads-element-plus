@@ -13,11 +13,13 @@
       :popper-class="[nsSelect.e('popper'), popperClass]"
       :fallback-placements="['bottom-start', 'top-start', 'right', 'left']"
       :effect="effect"
+      :offset="offset"
       pure
       trigger="click"
       :transition="`${nsSelect.namespace.value}-zoom-in-top`"
       :stop-popper-mouse-event="false"
       :gpu-acceleration="false"
+      :show-arrow="false"
       :persistent="persistent"
       @show="handleMenuEnter"
     >
@@ -208,18 +210,48 @@
             </template>
             <template #suffix>
               <el-icon
-                v-if="iconComponent"
                 v-show="!showClose"
                 :class="[nsSelect.e('caret'), nsSelect.e('icon'), iconReverse]"
               >
-                <component :is="iconComponent" />
+                <component :is="iconComponent" v-if="iconComponent" />
+                <svg
+                  v-else
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="ads-icon"
+                >
+                  <path
+                    d="M210.752 685.248a64 64 0 0 1 0-90.496l256-256a64 64 0 0 1 90.496 0l256 256a64 64 0 0 1-90.496 90.496L512 474.496l-210.752 210.752a64 64 0 0 1-90.496 0z"
+                    fill="#CBCCD1"
+                  />
+                </svg>
               </el-icon>
               <el-icon
-                v-if="showClose && clearIcon"
+                v-if="showClose"
                 :class="[nsSelect.e('caret'), nsSelect.e('icon')]"
                 @click="handleClearClick"
               >
-                <component :is="clearIcon" />
+                <component :is="clearIcon" v-if="clearIcon" />
+                <svg
+                  v-else
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="ads-icon"
+                >
+                  <path
+                    d="M512 128a384 384 0 1 0 0 768A384 384 0 0 0 512 128zM0 512a512 512 0 1 1 1024 0A512 512 0 0 1 0 512z"
+                    fill="#CBCCD1"
+                    opacity=".4"
+                  />
+                  <path
+                    d="M331.008 331.008a64 64 0 0 1 90.496 0l271.552 271.552a64 64 0 0 1-90.56 90.496L331.008 421.504a64 64 0 0 1 0-90.496z"
+                    fill="#CBCCD1"
+                  />
+                  <path
+                    d="M330.944 692.992a64 64 0 0 1 0-90.496l271.552-271.552a64 64 0 1 1 90.496 90.56l-271.488 271.488a64 64 0 0 1-90.56 0z"
+                    fill="#CBCCD1"
+                  />
+                </svg>
               </el-icon>
             </template>
           </el-input>
@@ -288,7 +320,7 @@ import {
   isValidComponentSize,
   removeResizeListener,
 } from '@element-plus/utils'
-import { ArrowUp, CircleClose } from '@element-plus/icons-vue'
+// import { ArrowUp, CircleClose } from '@element-plus/icons-vue'
 import ElOption from './option.vue'
 import ElSelectMenu from './select-dropdown.vue'
 import { useSelect, useSelectStates } from './useSelect'
@@ -331,6 +363,10 @@ export default defineComponent({
     effect: {
       type: String as PropType<'light' | 'dark' | string>,
       default: 'light',
+    },
+    offset: {
+      type: Number,
+      default: 0,
     },
     disabled: Boolean,
     clearable: Boolean,
@@ -380,7 +416,6 @@ export default defineComponent({
     },
     clearIcon: {
       type: [String, Object] as PropType<string | Component>,
-      default: CircleClose,
     },
     fitInputWidth: {
       type: Boolean,
@@ -388,10 +423,9 @@ export default defineComponent({
     },
     suffixIcon: {
       type: [String, Object] as PropType<string | Component>,
-      default: ArrowUp,
     },
     // eslint-disable-next-line vue/require-prop-types
-    tagType: { ...tagProps.type, default: 'info' },
+    tagType: { ...tagProps.type, default: 'default' },
   },
   emits: [
     UPDATE_MODEL_EVENT,

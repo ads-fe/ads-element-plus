@@ -201,7 +201,7 @@
 
     text-align: center;
     box-sizing: border-box;
-    border-radius: var(--el-pagination-border-radius);
+    border-radius: var(--el-border-radius-small);
 
     &.#{$namespace}-input {
       width: 50px;
@@ -226,7 +226,7 @@
       background-color: var(--el-pagination-button-bg-color);
       color: var(--el-text-color-regular);
       min-width: 32px;
-      border-radius: 2px;
+      border-radius: var(--el-border-radius-small);
 
       &.is-disabled {
         color: var(--el-text-color-placeholder);
@@ -259,8 +259,8 @@
       }
 
       &.is-active {
-        background-color: var(--el-color-primary);
-        color: var(--el-color-white);
+        background-color: var(--el-color-primary-light-8);
+        color: var(--el-color-primary);
         font-weight: bold;
       }
     }

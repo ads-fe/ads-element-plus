@@ -791,7 +791,7 @@ $pagination: map.merge(
     'button-width': 32px,
     'button-height': 32px,
     'button-disabled-color': getCssVar('text-color-placeholder'),
-    'button-disabled-bg-color': getCssVar('fill-color', 'blank'),
+    'button-disabled-bg-color': #999,
     'button-bg-color': getCssVar('fill-color'),
     'hover-color': getCssVar('color-primary'),
     'height-extra-small': 24px,

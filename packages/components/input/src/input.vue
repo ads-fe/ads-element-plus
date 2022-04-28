@@ -14,6 +14,7 @@
         [nsInput.m('suffix')]:
           $slots.suffix || suffixIcon || clearable || showPassword,
         [nsInput.m('suffix--password-clear')]: showClear && showPwdVisible,
+        [nsInput.m('suffix--limit')]: isWordLimitVisible && textLength,
       },
       $attrs.class,
     ]"
@@ -75,7 +76,25 @@
             @mousedown.prevent
             @click="clear"
           >
-            <circle-close />
+            <svg
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+              class="ads-icon"
+            >
+              <path
+                d="M512 128a384 384 0 1 0 0 768A384 384 0 0 0 512 128zM0 512a512 512 0 1 1 1024 0A512 512 0 0 1 0 512z"
+                fill="#CBCCD1"
+                opacity=".4"
+              />
+              <path
+                d="M331.008 331.008a64 64 0 0 1 90.496 0l271.552 271.552a64 64 0 0 1-90.56 90.496L331.008 421.504a64 64 0 0 1 0-90.496z"
+                fill="#CBCCD1"
+              />
+              <path
+                d="M330.944 692.992a64 64 0 0 1 0-90.496l271.552-271.552a64 64 0 1 1 90.496 90.56l-271.488 271.488a64 64 0 0 1-90.56 0z"
+                fill="#CBCCD1"
+              />
+            </svg>
           </el-icon>
           <el-icon
             v-if="showPwdVisible"
@@ -154,7 +173,7 @@ import {
 import { isClient } from '@vueuse/core'
 import { isNil } from 'lodash-unified'
 import { ElIcon } from '@element-plus/components/icon'
-import { CircleClose, View as IconView } from '@element-plus/icons-vue'
+import { View as IconView } from '@element-plus/icons-vue'
 import {
   ValidateComponentsMap,
   debugWarn,

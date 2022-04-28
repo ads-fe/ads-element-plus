@@ -39,7 +39,7 @@
     bottom: 1px;
 
     width: map.get($input-height, 'default');
-    background: getCssVar('fill-color', 'light');
+    // background: getCssVar('fill-color', 'light');
     color: var(--el-text-color-regular);
     cursor: pointer;
     font-size: 13px;
@@ -66,19 +66,19 @@
 
   @include e(increase) {
     right: 1px;
-    border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base) 0;
-    border-left: var(--el-border);
+    // border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base) 0;
+    // border-left: var(--el-border);
   }
 
   @include e(decrease) {
     left: 1px;
-    border-radius: var(--el-border-radius-base) 0 0 var(--el-border-radius-base);
-    border-right: var(--el-border);
+    // border-radius: var(--el-border-radius-base) 0 0 var(--el-border-radius-base);
+    // border-right: var(--el-border);
   }
 
   @include when(disabled) {
     @include e((increase, decrease)) {
-      border-color: var(--el-disabled-border-color);
+      // border-color: var(--el-disabled-border-color);
       color: var(--el-disabled-border-color);
 
       &:hover {
@@ -94,7 +94,7 @@
       line-height: #{map.get($input-height, $size) - 2};
 
       @include e((increase, decrease)) {
-        width: map.get($input-height, $size);
+        width: map.get($input-height, $size) - 8;
         font-size: map.get($input-font-size, $size);
       }
 
@@ -115,15 +115,15 @@
 
   @include when(without-controls) {
     .#{$namespace}-input__inner {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 16px;
+      padding-right: 16px;
     }
   }
 
   @include when(controls-right) {
     .#{$namespace}-input__inner {
       padding-left: 15px;
-      padding-right: #{map.get($input-height, 'default') + 10};
+      padding-right: #{map.get($input-height, 'default')};
     }
 
     @include e((increase, decrease)) {
@@ -131,20 +131,22 @@
           map.get($input-height, 'default') - 2,
           2
         )};
-
+      padding-bottom: 2px;
       height: var(--el-input-number-controls-height);
       line-height: var(--el-input-number-controls-height);
 
-      [class*='#{$namespace}-icon'] {
-        transform: scale(0.8);
-      }
+      // [class*='#{$namespace}-icon'] {
+      //   transform: scale(0.8);
+      // }
     }
 
     @include e(increase) {
       bottom: auto;
       left: auto;
-      border-radius: 0 var(--el-border-radius-base) 0 0;
-      border-bottom: var(--el-border);
+      padding-top: 2px;
+      padding-bottom: 0px;
+      // border-radius: 0 var(--el-border-radius-base) 0 0;
+      // border-bottom: var(--el-border);
     }
 
     @include e(decrease) {
@@ -152,8 +154,8 @@
       top: auto;
       left: auto;
       border-right: none;
-      border-left: var(--el-border);
-      border-radius: 0 0 var(--el-border-radius-base) 0;
+      // border-left: var(--el-border);
+      // border-radius: 0 0 var(--el-border-radius-base) 0;
     }
 
     @each $size in (large, small) {

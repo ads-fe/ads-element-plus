@@ -17,7 +17,16 @@
       @keydown.enter="decrease"
     >
       <el-icon>
-        <arrow-down v-if="controlsAtRight" />
+        <svg
+          v-if="controlsAtRight"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          class="ads-icon"
+        >
+          <path
+            d="M210.752 338.752a64 64 0 0 0 0 90.496l256 256a64 64 0 0 0 90.496 0l256-256a64 64 0 0 0-90.496-90.496L512 549.504 301.248 338.752a64 64 0 0 0-90.496 0z"
+          />
+        </svg>
         <minus v-else />
       </el-icon>
     </span>
@@ -29,7 +38,16 @@
       @keydown.enter="increase"
     >
       <el-icon>
-        <arrow-up v-if="controlsAtRight" />
+        <svg
+          v-if="controlsAtRight"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+          class="ads-icon"
+        >
+          <path
+            d="M210.752 685.248a64 64 0 0 1 0-90.496l256-256a64 64 0 0 1 90.496 0l256 256a64 64 0 0 1-90.496 90.496L512 474.496l-210.752 210.752a64 64 0 0 1-90.496 0z"
+          />
+        </svg>
         <plus v-else />
       </el-icon>
     </span>
@@ -76,7 +94,7 @@ import {
 } from '@element-plus/hooks'
 import ElInput from '@element-plus/components/input'
 import { debugWarn, isNumber, isUndefined } from '@element-plus/utils'
-import { ArrowDown, ArrowUp, Minus, Plus } from '@element-plus/icons-vue'
+import { Minus, Plus } from '@element-plus/icons-vue'
 import { inputNumberEmits, inputNumberProps } from './input-number'
 
 import type { ComponentPublicInstance } from 'vue'
@@ -91,8 +109,6 @@ export default defineComponent({
   components: {
     ElInput,
     ElIcon,
-    ArrowUp,
-    ArrowDown,
     Plus,
     Minus,
   },

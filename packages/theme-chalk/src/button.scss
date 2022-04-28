@@ -39,7 +39,7 @@ $button-icon-span-gap: map.merge(
   box-sizing: border-box;
   outline: none;
   transition: 0.1s;
-  font-weight: getCssVar('button', 'font-weight');
+  font-weight: 400;
   user-select: none;
   vertical-align: middle;
 
@@ -65,6 +65,14 @@ $button-icon-span-gap: map.merge(
     border-color: getCssVar('button', 'hover', 'border-color');
     background-color: getCssVar('button', 'hover', 'bg-color');
     outline: none;
+    & [class*='#{$namespace}-svg'] {
+      .default {
+        display: none;
+      }
+      .hover {
+        display: inline;
+      }
+    }
   }
 
   &:active {
@@ -87,6 +95,9 @@ $button-icon-span-gap: map.merge(
     }
   }
   & [class*='#{$namespace}-svg'] {
+    .hover {
+      display: none;
+    }
     & + span {
       margin-left: map.get($button-icon-span-gap, 'default');
     }
@@ -123,6 +134,9 @@ $button-icon-span-gap: map.merge(
       background-image: none;
       background-color: getCssVar('button', 'disabled', 'bg-color');
       border-color: getCssVar('button', 'disabled', 'border-color');
+      svg {
+        opacity: 0.75;
+      }
     }
   }
 

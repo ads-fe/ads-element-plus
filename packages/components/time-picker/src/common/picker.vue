@@ -14,6 +14,8 @@
     :gpu-acceleration="false"
     :stop-popper-mouse-event="false"
     :hide-after="0"
+    :show-arrow="false"
+    :offset="4"
     persistent
     @before-show="onBeforeShow"
     @show="onShow"

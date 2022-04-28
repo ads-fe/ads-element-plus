@@ -55,9 +55,9 @@
     &:hover,
     &:focus,
     &:active {
-      color: getCssVar('color', $type, 'light-5');
-      background-color: getCssVar('color', $type, 'light-9');
-      border-color: getCssVar('color', $type, 'light-8');
+      color: #bcbec6;
+      background-color: #f3f3f3;
+      border-color: #bcbec6;
     }
   }
 }
@@ -113,12 +113,12 @@
       ),
       'bg-color': (
         'color',
-        $type,
+        'info',
         'light-5',
       ),
       'border-color': (
         'color',
-        $type,
+        'info',
         'light-5',
       ),
     ),

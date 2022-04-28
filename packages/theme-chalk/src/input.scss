@@ -116,13 +116,25 @@
 
 @include b(input) {
   @include set-component-css-var('input', $input);
-
   position: relative;
   font-size: var(--el-font-size-base);
   display: inline-flex;
   width: 100%;
   line-height: map.get($input-height, 'default');
   @include scroll-bar;
+
+  &.#{$namespace}-input--suffix--limit {
+    .#{$namespace}-input__suffix {
+      line-height: 18px;
+      bottom: -9px;
+      height: 18px;
+      top: auto;
+      right: 5px;
+      & .#{$namespace}-input__count {
+        height: 18px;
+      }
+    }
+  }
 
   & .#{$namespace}-input__clear {
     color: var(--el-input-icon-color);
@@ -182,7 +194,7 @@
     }
 
     &:hover {
-      @include inset-input-border(var(--el-input-hover-border-color));
+      @include inset-input-border(var(--el-input-focus-border-color));
     }
 
     &:focus {

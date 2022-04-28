@@ -29,7 +29,14 @@
       :height="_svgSize"
       :class="nsSvg.b()"
     >
-      <use :xlink:href="`#${svgIcon}`" />
+      <use
+        v-if="(_disabled || loading) && svgIconDisabled"
+        :xlink:href="`#${svgIconDisabled}`"
+      />
+      <template v-else>
+        <use :xlink:href="`#${svgIcon}`" class="default" />
+        <use :xlink:href="`#${svgHoverIcon || svgIcon}`" class="hover" />
+      </template>
     </svg>
     <el-icon v-else-if="icon || $slots.icon">
       <component :is="icon" v-if="icon" />
@@ -128,7 +135,7 @@ const buttonStyle = computed(() => {
     }
 
     if (_disabled.value) {
-      const disabledButtonColor = color.tint(50).toString()
+      const disabledButtonColor = '#BCBEC6'
       styles['--el-button-disabled-bg-color'] = disabledButtonColor
       styles['--el-button-disabled-border-color'] = disabledButtonColor
     }

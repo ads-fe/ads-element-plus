@@ -151,6 +151,8 @@ $radio-font-size: map.merge(
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
+    border-color: var(--el-radio-input-border-color-hover);
+    border-width: 2px;
 
     &:hover {
       border-color: var(--el-radio-input-border-color-hover);
@@ -160,7 +162,8 @@ $radio-font-size: map.merge(
       width: 4px;
       height: 4px;
       border-radius: var(--el-radio-input-border-radius);
-      background-color: var(--el-color-white);
+      // background-color: var(--el-color-white);
+      border: 2px solid var(--el-color-white);
       content: '';
       position: absolute;
       left: 50%;

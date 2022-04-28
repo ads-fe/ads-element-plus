@@ -105,9 +105,7 @@ export const useSelect = (props, states: States, ctx) => {
   const iconComponent = computed(() =>
     props.remote && props.filterable ? '' : props.suffixIcon
   )
-  const iconReverse = computed(() =>
-    ns.is('reverse', iconComponent.value && states.visible)
-  )
+  const iconReverse = computed(() => ns.is('reverse', states.visible))
 
   const debounce = computed(() => (props.remote ? 300 : 0))
 

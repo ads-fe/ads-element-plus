@@ -32,6 +32,14 @@ export const buttonProps = buildProps({
     type: String,
     default: '',
   },
+  svgHoverIcon: {
+    type: String,
+    default: '',
+  },
+  svgIconDisabled: {
+    type: String,
+    default: '',
+  },
   nativeType: {
     type: String,
     values: buttonNativeTypes,
