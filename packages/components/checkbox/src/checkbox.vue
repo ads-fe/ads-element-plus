@@ -22,7 +22,28 @@
       :role="indeterminate ? 'checkbox' : undefined"
       :aria-checked="indeterminate ? 'mixed' : false"
     >
-      <span :class="ns.e('inner')" />
+      <!-- <span :class="ns.e('inner')" /> -->
+      <i :class="ns.e('svg')">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M64 256a192 192 0 0 1 192-192h512a192 192 0 0 1 192 192v512a192 192 0 0 1-192 192H256a192 192 0 0 1-192-192V256z m192-64a64 64 0 0 0-64 64v512a64 64 0 0 0 64 64h512a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H256z"
+          />
+          <path
+            v-if="isChecked || indeterminate"
+            d="M128 256a128 128 0 0 1 128-128h512a128 128 0 0 1 128 128v512a128 128 0 0 1-128 128H256a128 128 0 0 1-128-128V256z"
+          />
+          <path
+            v-if="isChecked && !indeterminate"
+            d="M259.2 466.752a64 64 0 0 1 90.496 0L458.944 576l237.312-237.248a64 64 0 1 1 90.496 90.496l-282.496 282.496a64 64 0 0 1-90.56 0L259.2 557.248a64 64 0 0 1 0-90.496z"
+            fill="#FFFFFF"
+          />
+          <path
+            v-if="indeterminate"
+            d="M256 448m64 0l384 0q64 0 64 64l0 0q0 64-64 64l-384 0q-64 0-64-64l0 0q0-64 64-64Z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      </i>
       <input
         v-if="trueLabel || falseLabel"
         v-model="model"

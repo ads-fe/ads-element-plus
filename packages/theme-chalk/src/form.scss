@@ -25,6 +25,16 @@ $form-item-line-height: map.merge(
   $form-item-line-height
 );
 
+$form-label-padding-top: () !default;
+$form-label-padding-top: map.merge(
+  (
+    'large': 11px,
+    'default': 7px,
+    'small': 3px,
+  ),
+  $form-label-padding-top
+);
+
 $form-item-error-padding-top: () !default;
 $form-item-error-padding-top: map.merge(
   (
@@ -126,7 +136,8 @@ $form-item-label-top-margin-bottom: map.merge(
       margin-bottom: #{map.get($form-item-margin-bottom, $size)};
 
       @include e(label) {
-        line-height: #{map.get($form-item-line-height, $size)};
+        line-height: 18px;
+        padding-top: #{map.get($form-label-padding-top, $size)};
       }
       @include e(content) {
         line-height: #{map.get($form-item-line-height, $size)};
@@ -153,6 +164,7 @@ $form-item-label-top-margin-bottom: map.merge(
     line-height: #{map.get($form-item-line-height, 'default')};
     padding: 0 12px 0 0;
     box-sizing: border-box;
+    word-break: break-word;
   }
   @include e(content) {
     display: flex;

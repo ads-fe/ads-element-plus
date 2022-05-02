@@ -131,7 +131,7 @@ $radio-font-size: map.merge(
       }
 
       & + .#{$namespace}-radio__label {
-        color: map.get($radio-checked, 'text-color');
+        // color: map.get($radio-checked, 'text-color');
       }
     }
 

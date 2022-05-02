@@ -82,8 +82,8 @@ $tag-icon-span-gap: map.merge(
   .#{$namespace}-tag__close {
     color: var(--el-tag-text-color);
     &:hover {
-      color: var(--el-color-white);
-      // background-color: var(--el-tag-hover-color);
+      color: var(--el-tag-text-color);
+      background-color: var(--el-color-white);
     }
   }
 

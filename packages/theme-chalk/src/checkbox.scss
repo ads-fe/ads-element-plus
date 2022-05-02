@@ -12,9 +12,9 @@ $checkbox-height: map.merge($common-component-size, $checkbox-height);
 $checkbox-bordered-input-height: () !default;
 $checkbox-bordered-input-height: map.merge(
   (
-    'large': 14px,
-    'default': 12px,
-    'small': 12px,
+    'large': 18px,
+    'default': 16px,
+    'small': 14px,
   ),
   $checkbox-bordered-input-height
 );
@@ -121,6 +121,10 @@ $checkbox-bordered-input-width: map.merge(
         }
       }
 
+      .#{$namespace}-checkbox__svg {
+        --color: var(--el-checkbox-disabled-checked-input-border-color);
+      }
+
       &.is-checked {
         .#{$namespace}-checkbox__inner {
           background-color: var(--el-checkbox-disabled-checked-input-fill);
@@ -178,7 +182,6 @@ $checkbox-bordered-input-width: map.merge(
       .#{$namespace}-checkbox__inner {
         background-color: var(--el-checkbox-checked-bg-color);
         border-color: var(--el-checkbox-checked-input-border-color);
-
         &::before {
           content: '';
           position: absolute;
@@ -250,6 +253,24 @@ $checkbox-bordered-input-width: map.merge(
       border-radius: 1px;
       transition: transform 0.15s ease-in 0.05s;
       transform-origin: center;
+    }
+  }
+
+  @include e(svg) {
+    height: 1em;
+    width: 1em;
+    line-height: 1em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    fill: currentColor;
+    color: var(--color);
+    font-size: var(--el-checkbox-input-width);
+    --color: var(--el-checkbox-input-border-color-hover);
+    svg {
+      height: 1em;
+      width: 1em;
     }
   }
 

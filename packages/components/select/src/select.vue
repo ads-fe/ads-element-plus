@@ -216,18 +216,19 @@
                 <component :is="iconComponent" v-if="iconComponent" />
                 <svg
                   v-else
+                  :size="16"
                   viewBox="0 0 1024 1024"
                   xmlns="http://www.w3.org/2000/svg"
                   class="ads-icon"
                 >
                   <path
                     d="M210.752 685.248a64 64 0 0 1 0-90.496l256-256a64 64 0 0 1 90.496 0l256 256a64 64 0 0 1-90.496 90.496L512 474.496l-210.752 210.752a64 64 0 0 1-90.496 0z"
-                    fill="#CBCCD1"
                   />
                 </svg>
               </el-icon>
               <el-icon
                 v-if="showClose"
+                :size="16"
                 :class="[nsSelect.e('caret'), nsSelect.e('icon')]"
                 @click="handleClearClick"
               >
@@ -240,7 +241,6 @@
                 >
                   <path
                     d="M512 128a384 384 0 1 0 0 768A384 384 0 0 0 512 128zM0 512a512 512 0 1 1 1024 0A512 512 0 0 1 0 512z"
-                    fill="#CBCCD1"
                     opacity=".4"
                   />
                   <path
