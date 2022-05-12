@@ -34,7 +34,7 @@
     <span
       ref="core"
       :class="ns.e('core')"
-      :style="{ width: (width || 40) + 'px' }"
+      :style="{ width: (width || 48) + 'px' }"
     >
       <div v-if="inlinePrompt" :class="ns.e('inner')">
         <template v-if="activeIcon || inactiveIcon">

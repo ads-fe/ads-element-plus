@@ -116,6 +116,16 @@ $button-icon-span-gap: map.merge(
       ('button', 'hover-border-color'),
       ('color', 'primary')
     );
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: #bcbec6;
+        background-color: #f3f3f3;
+        border-color: #bcbec6;
+      }
+    }
   }
 
   @include when(active) {
@@ -134,9 +144,6 @@ $button-icon-span-gap: map.merge(
       background-image: none;
       background-color: getCssVar('button', 'disabled', 'bg-color');
       border-color: getCssVar('button', 'disabled', 'border-color');
-      svg {
-        opacity: 0.75;
-      }
     }
   }
 

@@ -16,7 +16,7 @@
       :class="[ns.e('decrease'), ns.is('disabled', minDisabled)]"
       @keydown.enter="decrease"
     >
-      <el-icon>
+      <el-icon :color="minDisabled ? '#e3e3e3' : '#CBCCD1'">
         <svg
           v-if="controlsAtRight"
           viewBox="0 0 1024 1024"
@@ -37,7 +37,7 @@
       :class="[ns.e('increase'), ns.is('disabled', maxDisabled)]"
       @keydown.enter="increase"
     >
-      <el-icon>
+      <el-icon :color="maxDisabled ? '#e3e3e3' : '#CBCCD1'">
         <svg
           v-if="controlsAtRight"
           viewBox="0 0 1024 1024"

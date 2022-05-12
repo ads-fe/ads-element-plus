@@ -43,6 +43,7 @@
                 :size="collapseTagSize"
                 :hit="selected[0].hitState"
                 :type="tagType"
+                effect="dark"
                 disable-transitions
                 @close="deleteTag($event, selected[0])"
               >
@@ -57,6 +58,7 @@
                 :closable="false"
                 :size="collapseTagSize"
                 :type="tagType"
+                effect="dark"
                 disable-transitions
               >
                 <el-tooltip
@@ -86,6 +88,7 @@
                           :size="collapseTagSize"
                           :hit="item.hitState"
                           :type="tagType"
+                          effect="dark"
                           disable-transitions
                           :style="{ margin: '2px' }"
                           @close="deleteTag($event, item)"
@@ -211,12 +214,12 @@
             <template #suffix>
               <el-icon
                 v-show="!showClose"
+                :size="16"
                 :class="[nsSelect.e('caret'), nsSelect.e('icon'), iconReverse]"
               >
                 <component :is="iconComponent" v-if="iconComponent" />
                 <svg
                   v-else
-                  :size="16"
                   viewBox="0 0 1024 1024"
                   xmlns="http://www.w3.org/2000/svg"
                   class="ads-icon"
@@ -366,7 +369,7 @@ export default defineComponent({
     },
     offset: {
       type: Number,
-      default: 0,
+      default: -1,
     },
     disabled: Boolean,
     clearable: Boolean,

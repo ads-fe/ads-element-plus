@@ -84,6 +84,10 @@ export const inputProps = buildProps({
     type: definePropType<StyleValue>([Object, Array, String]),
     default: () => mutable({} as const),
   },
+  trim: {
+    type: Boolean,
+    default: false,
+  },
 } as const)
 export type InputProps = ExtractPropTypes<typeof inputProps>
 

@@ -11,7 +11,7 @@
         :style="labelStyle"
       >
         <slot name="label" :label="currentLabel">
-          {{ currentLabel }}
+          <span>{{ currentLabel }}</span>
         </slot>
       </label>
     </form-label-wrap>
@@ -125,6 +125,7 @@ const formItemClasses = computed(() => [
   ns.is('success', validateState.value === 'success'),
   ns.is('required', isRequired.value || props.required),
   ns.is('no-asterisk', formContext.hideRequiredAsterisk),
+  ns.is('top', props.center === false),
   { [ns.m('feedback')]: formContext.statusIcon },
 ])
 

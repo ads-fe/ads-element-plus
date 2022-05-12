@@ -73,13 +73,10 @@
     &:checked {
       & + .#{$namespace}-radio-button__inner {
         color: var(
-          --el-radio-button-checked-text-color,
-          map.get($radio-button, 'checked-text-color')
+          --el-radio-button-checked-border-color,
+          map.get($radio-button, 'checked-border-color')
         );
-        background-color: var(
-          --el-radio-button-checked-bg-color,
-          map.get($radio-button, 'checked-bg-color')
-        );
+        background-color: var(map.get($radio-button, 'checked-bg-color'));
         border-color: var(
           --el-radio-button-checked-border-color,
           map.get($radio-button, 'checked-border-color')

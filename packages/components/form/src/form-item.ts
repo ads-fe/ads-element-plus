@@ -49,5 +49,9 @@ export const formItemProps = buildProps({
     type: String,
     values: componentSizes,
   },
+  center: {
+    type: Boolean,
+    default: true,
+  },
 } as const)
 export type FormItemProps = ExtractPropTypes<typeof formItemProps>

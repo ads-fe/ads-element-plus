@@ -21,13 +21,13 @@
 
   @include when(dark) {
     color: var(--el-color-white);
-    background: var(--el-text-color-primary);
-    border: 1px solid var(--el-text-color-primary);
+    background: #1f2542cc;
+    // border: 1px solid #1F2542;
 
     #{$arrow-selector}::before {
-      border: 1px solid var(--el-text-color-primary);
-      background: var(--el-text-color-primary);
-      right: 0;
+      // border: 1px solid #1F2542;
+      background: #1f2542cc;
+      right: 3px;
     }
   }
 
@@ -38,7 +38,7 @@
     #{$arrow-selector}::before {
       border: 1px solid var(--el-border-color-light);
       background: var(--el-color-white);
-      right: 0;
+      right: 3px;
     }
   }
 
@@ -48,9 +48,10 @@
 
   @include e(arrow) {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     z-index: -1;
+    overflow: hidden;
 
     &::before {
       position: absolute;
@@ -59,7 +60,7 @@
       z-index: -1;
       content: ' ';
       transform: rotate(45deg);
-      background: var(--el-text-color-primary);
+      background: #1f2542;
       box-sizing: border-box;
     }
   }
@@ -73,20 +74,27 @@
 
   @each $placement, $opposite in $placements {
     &[data-popper-placement^='#{$placement}'] > #{$arrow-selector} {
-      #{$opposite}: -5px;
+      #{$opposite}: -15px;
 
       &::before {
         @if $placement == top {
           border-bottom-right-radius: 2px;
+          top: -5.5px;
         }
         @if $placement == bottom {
           border-top-left-radius: 2px;
+          bottom: -5.5px;
         }
         @if $placement == left {
           border-top-right-radius: 2px;
+          top: 3px;
+          left: -5.5px;
+          right: auto;
         }
         @if $placement == right {
           border-bottom-left-radius: 2px;
+          right: -5.5px;
+          top: 3px;
         }
       }
     }

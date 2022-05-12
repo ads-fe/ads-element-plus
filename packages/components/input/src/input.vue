@@ -72,6 +72,7 @@
           </template>
           <el-icon
             v-if="showClear"
+            :size="16"
             :class="[nsInput.e('icon'), nsInput.e('clear')]"
             @mousedown.prevent
             @click="clear"
@@ -395,10 +396,15 @@ const handleFocus = (event: FocusEvent) => {
 }
 
 const handleBlur = (event: FocusEvent) => {
+  const { value } = event.target as TargetElement
   focused.value = false
   emit('blur', event)
   if (props.validateEvent) {
     formItem?.validate?.('blur').catch((err) => debugWarn(err))
+  }
+  if (props.trim) {
+    emit(UPDATE_MODEL_EVENT, value.trim())
+    emit('input', value.trim())
   }
 }
 

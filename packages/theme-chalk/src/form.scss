@@ -136,8 +136,14 @@ $form-item-label-top-margin-bottom: map.merge(
       margin-bottom: #{map.get($form-item-margin-bottom, $size)};
 
       @include e(label) {
-        line-height: 18px;
-        padding-top: #{map.get($form-label-padding-top, $size)};
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        min-height: #{map.get($form-item-line-height, $size)};
+        span {
+          text-align: right;
+          flex: 1;
+        }
       }
       @include e(content) {
         line-height: #{map.get($form-item-line-height, $size)};
@@ -161,8 +167,9 @@ $form-item-label-top-margin-bottom: map.merge(
     text-align: right;
     font-size: var(--el-form-label-font-size);
     color: var(--el-text-color-regular);
-    line-height: #{map.get($form-item-line-height, 'default')};
-    padding: 0 12px 0 0;
+    line-height: 18px;
+    min-height: #{map.get($form-item-line-height, 'default')};
+    padding: 0 24px 0 0;
     box-sizing: border-box;
     word-break: break-word;
   }
@@ -200,14 +207,19 @@ $form-item-label-top-margin-bottom: map.merge(
 
   @include when(required) {
     @include pseudo('not(.is-no-asterisk)') {
-      > .#{$namespace}-form-item__label:before,
+      > .#{$namespace}-form-item__label span:before,
       > .#{$namespace}-form-item__label-wrap
-        > .#{$namespace}-form-item__label:before {
+        > .#{$namespace}-form-item__label
+        span:before {
         content: '*';
         color: var(--el-color-danger);
         margin-right: 4px;
       }
     }
+  }
+
+  @include when(top) {
+    align-items: flex-start;
   }
 
   @include when(error) {

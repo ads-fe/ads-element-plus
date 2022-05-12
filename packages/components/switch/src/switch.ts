@@ -31,7 +31,7 @@ export const switchProps = buildProps({
   },
   width: {
     type: Number,
-    default: 40,
+    default: 48,
   },
   inlinePrompt: {
     type: Boolean,

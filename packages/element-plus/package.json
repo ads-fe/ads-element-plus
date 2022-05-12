@@ -1,6 +1,6 @@
 {
   "name": "ads-element-plus",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "description": "A Component Library for Vue 3",
   "homepage": "https://element-plus.org/",
   "keywords": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/element-plus/element-plus.git"
+    "url": "git+https://github.com/ads-fe/ads-element-plus.git"
   },
   "exports": {
     ".": {
