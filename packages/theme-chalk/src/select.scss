@@ -69,6 +69,7 @@
     display: flex;
 
     & .#{$namespace}-select__caret {
+      --el-select-input-color: #cbccd1;
       color: var(--el-select-input-color);
       font-size: var(--el-select-input-font-size);
       transition: transform var(--el-transition-duration);

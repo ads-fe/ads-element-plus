@@ -88,6 +88,7 @@ export const paginationProps = buildProps({
   background: Boolean,
   disabled: Boolean,
   hideOnSinglePage: Boolean,
+  isSimple: Boolean,
 } as const)
 export type PaginationProps = ExtractPropTypes<typeof paginationProps>
 
@@ -280,7 +281,9 @@ export default defineComponent({
           prevText: props.prevText,
           onClick: prev,
         }),
-        jumper: h(Jumper),
+        jumper: h(Jumper, {
+          isSimple: props.isSimple,
+        }),
         pager: h(Pager, {
           currentPage: currentPageBridge.value,
           pageCount: pageCountBridge.value,

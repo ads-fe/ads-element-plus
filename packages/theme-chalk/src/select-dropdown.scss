@@ -30,6 +30,12 @@ $checked-icon: "data:image/svg+xml;utf8,%3Csvg class='icon' width='200' height='
   box-sizing: border-box;
 
   @include when(multiple) {
+    & .#{$namespace}-select-dropdown__item {
+      &::after {
+        @include checked-icon;
+        background-color: #e9e9ec;
+      }
+    }
     & .#{$namespace}-select-dropdown__item.selected {
       color: map.get($select-option, 'selected-text-color');
       background-color: map.get($select-dropdown, 'bg-color');

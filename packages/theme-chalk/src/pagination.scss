@@ -186,6 +186,13 @@
     }
   }
 
+  @include e(simple) {
+    margin: 0 12px;
+    .#{$namespace}-input {
+      margin-left: 0;
+    }
+  }
+
   @include e(rightwrapper) {
     flex: 1;
     display: flex;

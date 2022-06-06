@@ -1,6 +1,9 @@
 <template>
-  <span :class="ns.e('jump')" :disabled="disabled">
-    {{ t('el.pagination.goto') }}
+  <span
+    :class="[ns.e('jump'), isSimple ? ns.e('simple') : '']"
+    :disabled="disabled"
+  >
+    {{ isSimple ? '' : t('el.pagination.goto') }}
     <el-input
       size="small"
       :class="[ns.e('editor'), ns.is('in-pagination')]"
@@ -12,7 +15,7 @@
       @update:model-value="handleInput"
       @change="handleChange"
     />
-    {{ t('el.pagination.pageClassifier') }}
+    {{ isSimple ? `/ ${pageCount}` : t('el.pagination.pageClassifier') }}
   </span>
 </template>
 
@@ -27,6 +30,9 @@ export default defineComponent({
   components: {
     ElInput,
   },
+  props: {
+    isSimple: Boolean,
+  } as const,
 
   setup() {
     const { t } = useLocale()

@@ -137,6 +137,7 @@
   }
 
   & .#{$namespace}-input__clear {
+    --el-input-icon-color: #cbccd1;
     color: var(--el-input-icon-color);
     font-size: map.get($input-font-size, 'default');
     cursor: pointer;
