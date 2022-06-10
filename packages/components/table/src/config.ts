@@ -139,11 +139,35 @@ export const cellForced = {
         {
           default: () => {
             return [
-              h(ElIcon, null, {
-                default: () => {
-                  return [h(ArrowRight)]
+              h(
+                ElIcon,
+                {
+                  color: '#CBCCD1',
                 },
-              }),
+                {
+                  default: () => {
+                    return [
+                      h(
+                        'svg',
+                        {
+                          viewBox: '0 0 1024 1024',
+                          version: '1.1',
+                          xmlns: 'http://www.w3.org/2000/svg',
+                        },
+                        {
+                          default: () => {
+                            return [
+                              h('path', {
+                                d: 'M338.688 813.248a64 64 0 0 0 90.56 0l256-256a64 64 0 0 0 0-90.496l-256-256a64 64 0 1 0-90.56 90.496L549.44 512l-210.752 210.752a64 64 0 0 0 0 90.496z',
+                              }),
+                            ]
+                          },
+                        }
+                      ),
+                    ]
+                  },
+                }
+              ),
             ]
           },
         }

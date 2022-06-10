@@ -59,8 +59,7 @@ $button-icon-span-gap: map.merge(
     map.get($button-border-radius, 'default')
   );
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: getCssVar('button', 'hover', 'text-color');
     border-color: getCssVar('button', 'hover', 'border-color');
     background-color: getCssVar('button', 'hover', 'bg-color');
@@ -73,6 +72,10 @@ $button-icon-span-gap: map.merge(
         display: inline;
       }
     }
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &:active {
@@ -225,11 +228,13 @@ $button-icon-span-gap: map.merge(
     padding-left: 0;
     padding-right: 0;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: getCssVar('color', 'primary', 'light-3');
       border-color: transparent;
       background-color: transparent;
+    }
+    &:focus {
+      outline: none;
     }
     &:active {
       color: getCssVar('color', 'primary', 'dark-2');
