@@ -18,7 +18,7 @@
     <el-tooltip
       ref="tooltip"
       v-model:visible="tooltipVisible"
-      placement="top"
+      :placement="tooltipPlacement"
       :stop-popper-mouse-event="false"
       :popper-class="tooltipClass"
       :disabled="!showTooltip"
@@ -29,11 +29,18 @@
       </template>
       <div :class="[ns.e('button'), { hover: hovering, dragging }]" />
     </el-tooltip>
+    <div :class="[ns.e('button-slot-top')]">
+      <slot name="slotTop" />
+    </div>
+    <div :class="[ns.e('button-slot-bottom')]">
+      <slot name="slotBottom" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
+import { placements } from '@popperjs/core'
 import ElTooltip from '@element-plus/components/tooltip'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useNamespace } from '@element-plus/hooks'
@@ -59,6 +66,16 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    tooltipPlacement: {
+      type: String,
+      values: placements,
+      default: 'bottom',
+    },
+    isMarkStep: {
+      type: Boolean,
+      default: false,
+    },
+    marks: Object,
   },
 
   emits: [UPDATE_MODEL_EVENT],

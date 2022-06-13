@@ -64,6 +64,8 @@ export const useSliderButton = (
     emitChange,
     resetSize,
     updateDragging,
+    isMarkStep,
+    marks,
   } = inject<ISliderProvider>('SliderProvider')
 
   const { tooltip, tooltipVisible, formatValue, displayTooltip, hideTooltip } =
@@ -196,6 +198,24 @@ export const useSliderButton = (
     }
   }
 
+  const marksList = computed(() => {
+    if (marks.value) {
+      const list: { before: number; after: number; compare: number }[] = []
+      const mList = Object.keys(marks.value)
+      mList.forEach((el, index) => {
+        if (index !== mList.length - 1) {
+          list.push({
+            before: +el,
+            after: +mList[index + 1],
+            compare: (+mList[index + 1] - +el) / 2 + +el,
+          })
+        }
+      })
+      return list
+    }
+    return []
+  })
+
   const setPosition = async (newPosition: number) => {
     if (newPosition === null || Number.isNaN(+newPosition)) return
     if (newPosition < 0) {
@@ -203,10 +223,20 @@ export const useSliderButton = (
     } else if (newPosition > 100) {
       newPosition = 100
     }
-    const lengthPerStep = 100 / ((max.value - min.value) / step.value)
-    const steps = Math.round(newPosition / lengthPerStep)
-    let value =
-      steps * lengthPerStep * (max.value - min.value) * 0.01 + min.value
+    let value = min.value
+    if (isMarkStep.value) {
+      const steps = (max.value - min.value) * 0.01 * newPosition
+      for (const item of marksList.value) {
+        if (+steps > item.before && +steps < item.after) {
+          value = +steps < item.compare ? item.before : item.after
+          break
+        }
+      }
+    } else {
+      const lengthPerStep = 100 / ((max.value - min.value) / step.value)
+      const steps = Math.round(newPosition / lengthPerStep)
+      value = steps * lengthPerStep * (max.value - min.value) * 0.01 + min.value
+    }
     value = Number.parseFloat(value.toFixed(precision.value))
     emit(UPDATE_MODEL_EVENT, value)
 

@@ -19,6 +19,8 @@ export interface ISliderProps {
   debounce: number
   label: string
   tooltipClass: string
+  tooltipPlacement: string
+  isMarkStep: boolean
   marks?: Record<number, any>
 }
 
@@ -39,6 +41,9 @@ export interface ISliderProvider {
   precision: ComputedRef<number>
   sliderSize: ComputedRef<number>
   formatTooltip: ComputedRef<(value: number) => number | string>
+  tooltipPlacement: string
+  isMarkStep: boolean
+  marks?: Record<number, any>
   emitChange: () => void
   resetSize: () => void
   updateDragging: (val: boolean) => void

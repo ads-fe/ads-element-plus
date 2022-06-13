@@ -28,7 +28,8 @@ $slider-height: map.merge(
   @include e(runway) {
     flex: 1;
     height: var(--el-slider-height);
-    background-color: var(--el-slider-runway-bg-color);
+    // background-color: var(--el-slider-runway-bg-color);
+    background-color: #e8edff;
     border-radius: var(--el-slider-border-radius);
     position: relative;
     cursor: pointer;
@@ -121,8 +122,10 @@ $slider-height: map.merge(
     width: var(--el-slider-button-size);
     height: var(--el-slider-button-size);
     vertical-align: middle;
-    border: solid 2px var(--el-slider-main-bg-color);
-    background-color: var(--el-color-white);
+    // border: solid 2px var(--el-slider-main-bg-color);
+    border: solid 5px #e8edff;
+    // background-color: var(--el-color-white);
+    background-color: var(--el-slider-main-bg-color);
     border-radius: 50%;
     box-sizing: border-box;
     transition: var(--el-transition-duration-fast);
@@ -144,13 +147,30 @@ $slider-height: map.merge(
     }
   }
 
+  @include e(button-slot-top) {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @include e(button-slot-bottom) {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   @include e(stop) {
     position: absolute;
-    height: var(--el-slider-height);
-    width: var(--el-slider-height);
+    // height: var(--el-slider-height);
+    // width: var(--el-slider-height);
+    height: 14px;
+    width: 14px;
     border-radius: var(--el-border-radius-circle);
-    background-color: var(--el-slider-stop-bg-color);
-    transform: translateX(-50%);
+    // background-color: var(--el-slider-stop-bg-color);
+    background-color: #e8edff;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   @include e(marks) {

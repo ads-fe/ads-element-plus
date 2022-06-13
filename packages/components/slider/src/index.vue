@@ -24,16 +24,36 @@
         :model-value="firstValue"
         :vertical="vertical"
         :tooltip-class="tooltipClass"
+        :tooltip-placement="tooltipPlacement"
+        :is-mark-step="isMarkStep"
+        :marks="marks"
         @update:model-value="setFirstValue"
-      />
+      >
+        <template #slotTop>
+          <slot name="slotBtnTop" />
+        </template>
+        <template #slotBottom>
+          <slot name="slotBtnBottom" />
+        </template>
+      </slider-button>
       <slider-button
         v-if="range"
         ref="secondButton"
         :model-value="secondValue"
         :vertical="vertical"
         :tooltip-class="tooltipClass"
+        :tooltip-placement="tooltipPlacement"
+        :is-mark-step="isMarkStep"
+        :marks="marks"
         @update:model-value="setSecondValue"
-      />
+      >
+        <template #slotTop>
+          <slot name="slotBtnTop" />
+        </template>
+        <template #slotBottom>
+          <slot name="slotBtnBottom" />
+        </template>
+      </slider-button>
       <div v-if="showStops">
         <div
           v-for="(item, key) in stops"
@@ -92,6 +112,7 @@ import {
   toRefs,
   watch,
 } from 'vue'
+import { placements } from '@popperjs/core'
 import ElInputNumber from '@element-plus/components/input-number'
 import {
   CHANGE_EVENT,
@@ -166,6 +187,11 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    tooltipPlacement: {
+      type: String,
+      values: placements,
+      default: 'bottom',
+    },
     formatTooltip: {
       type: Function as PropType<(val: number) => number | string>,
       default: undefined,
@@ -197,6 +223,10 @@ export default defineComponent({
     tooltipClass: {
       type: String,
       default: undefined,
+    },
+    isMarkStep: {
+      type: Boolean,
+      default: false,
     },
     marks: Object,
   },
