@@ -69,7 +69,7 @@ export default defineComponent({
     tooltipPlacement: {
       type: String,
       values: placements,
-      default: 'bottom',
+      default: 'top',
     },
     isMarkStep: {
       type: Boolean,

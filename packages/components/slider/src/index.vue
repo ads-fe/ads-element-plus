@@ -190,7 +190,7 @@ export default defineComponent({
     tooltipPlacement: {
       type: String,
       values: placements,
-      default: 'bottom',
+      default: 'top',
     },
     formatTooltip: {
       type: Function as PropType<(val: number) => number | string>,
