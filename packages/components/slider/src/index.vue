@@ -68,7 +68,11 @@
             v-for="(item, key) in markList"
             :key="key"
             :style="getStopStyle(item.position)"
-            :class="[ns.e('stop'), ns.e('marks-stop')]"
+            :class="[
+              ns.e('stop'),
+              ns.e('marks-stop'),
+              item.point < modelValue ? ns.e('stop-active') : '',
+            ]"
           />
         </div>
         <div :class="ns.e('marks')">

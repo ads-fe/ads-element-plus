@@ -123,7 +123,7 @@ $slider-height: map.merge(
     height: var(--el-slider-button-size);
     vertical-align: middle;
     // border: solid 2px var(--el-slider-main-bg-color);
-    border: solid 5px #e8edff;
+    border: solid 4px #d2dbff;
     // background-color: var(--el-color-white);
     background-color: var(--el-slider-main-bg-color);
     border-radius: 50%;
@@ -171,6 +171,10 @@ $slider-height: map.merge(
     background-color: #e8edff;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  @include e(stop-active) {
+    background-color: #1e4dff;
   }
 
   @include e(marks) {

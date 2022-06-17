@@ -104,6 +104,7 @@ export const useSliderButton = (
     on(window, 'mousemove', onDragging)
     on(window, 'touchmove', onDragging)
     on(window, 'mouseup', onDragEnd)
+    on(document, 'mouseleave', onDragEnd)
     on(window, 'touchend', onDragEnd)
     on(window, 'contextmenu', onDragEnd)
   }
@@ -193,6 +194,7 @@ export const useSliderButton = (
       off(window, 'mousemove', onDragging)
       off(window, 'touchmove', onDragging)
       off(window, 'mouseup', onDragEnd)
+      off(document, 'mouseleave', onDragEnd)
       off(window, 'touchend', onDragEnd)
       off(window, 'contextmenu', onDragEnd)
     }
