@@ -39,11 +39,14 @@
               ]"
             >
               <el-tag
-                :closable="!selectDisabled && !selected[0].isDisabled"
+                :closable="
+                  !selectDisabled &&
+                  !selected[0].isDisabled &&
+                  !isDisableMultipleSingleDel
+                "
                 :size="collapseTagSize"
                 :hit="selected[0].hitState"
                 :type="tagType"
-                effect="dark"
                 disable-transitions
                 @close="deleteTag($event, selected[0])"
               >
@@ -58,7 +61,6 @@
                 :closable="false"
                 :size="collapseTagSize"
                 :type="tagType"
-                effect="dark"
                 disable-transitions
               >
                 <el-tooltip
@@ -84,11 +86,14 @@
                         <el-tag
                           :key="getValueKey(item)"
                           class="in-tooltip"
-                          :closable="!selectDisabled && !item.isDisabled"
+                          :closable="
+                            !selectDisabled &&
+                            !item.isDisabled &&
+                            !isDisableMultipleSingleDel
+                          "
                           :size="collapseTagSize"
                           :hit="item.hitState"
                           :type="tagType"
-                          effect="dark"
                           disable-transitions
                           :style="{ margin: '2px' }"
                           @close="deleteTag($event, item)"
@@ -121,7 +126,11 @@
                 <el-tag
                   v-for="item in selected"
                   :key="getValueKey(item)"
-                  :closable="!selectDisabled && !item.isDisabled"
+                  :closable="
+                    !selectDisabled &&
+                    !item.isDisabled &&
+                    !isDisableMultipleSingleDel
+                  "
                   :size="collapseTagSize"
                   :hit="item.hitState"
                   :type="tagType"
@@ -427,6 +436,10 @@ export default defineComponent({
     },
     // eslint-disable-next-line vue/require-prop-types
     tagType: { ...tagProps.type, default: 'default' },
+    isMultipleSingleDel: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: [
     UPDATE_MODEL_EVENT,
@@ -623,6 +636,10 @@ export default defineComponent({
       'popperAppendToBody'
     )
 
+    const isDisableMultipleSingleDel = computed(() => {
+      return !props.isMultipleSingleDel && selected.value.length === 1
+    })
+
     return {
       tagInMultiLine,
       prefixWidth,
@@ -673,6 +690,7 @@ export default defineComponent({
       selectOption,
       getValueKey,
       navigateOptions,
+      isDisableMultipleSingleDel,
       dropMenuVisible,
       focus,
 
