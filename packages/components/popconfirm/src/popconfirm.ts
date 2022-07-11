@@ -3,17 +3,12 @@ import { QuestionFilled } from '@element-plus/icons-vue'
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 import { useTooltipContentProps } from '@element-plus/components/tooltip'
 import type { Component, ExtractPropTypes } from 'vue'
+import type Popconfirm from './popconfirm.vue'
 
 export const popconfirmProps = buildProps({
-  title: {
-    type: String,
-  },
-  confirmButtonText: {
-    type: String,
-  },
-  cancelButtonText: {
-    type: String,
-  },
+  title: String,
+  confirmButtonText: String,
+  cancelButtonText: String,
   confirmButtonType: {
     type: String,
     values: buttonTypes,
@@ -50,3 +45,5 @@ export const popconfirmProps = buildProps({
   persistent: useTooltipContentProps.persistent,
 } as const)
 export type PopconfirmProps = ExtractPropTypes<typeof popconfirmProps>
+
+export type PopconfirmInstance = InstanceType<typeof Popconfirm>

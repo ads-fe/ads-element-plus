@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   computed,
   inject,
@@ -16,7 +17,12 @@ import {
   EVENT_CODE,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { debugWarn, isKorean, scrollIntoView } from '@element-plus/utils'
+import {
+  debugWarn,
+  getComponentSize,
+  isKorean,
+  scrollIntoView,
+} from '@element-plus/utils'
 import { useLocale, useNamespace, useSize } from '@element-plus/hooks'
 import { formContextKey, formItemContextKey } from '@element-plus/tokens'
 
@@ -35,7 +41,6 @@ export function useSelectStates(props) {
     selected: props.multiple ? [] : ({} as any),
     inputLength: 20,
     inputWidth: 0,
-    initialInputHeight: 0,
     optionsCount: 0,
     filteredOptionsCount: 0,
     visible: false,
@@ -171,7 +176,7 @@ export const useSelect = (props, states: States, ctx) => {
 
   // watch
   watch(
-    () => selectDisabled.value,
+    [() => selectDisabled.value, () => selectSize.value, () => elForm.size],
     () => {
       nextTick(() => {
         resetInputHeight()
@@ -205,7 +210,7 @@ export const useSelect = (props, states: States, ctx) => {
       if (props.filterable && !props.multiple) {
         states.inputLength = 20
       }
-      if (!isEqual(val, oldVal)) {
+      if (!isEqual(val, oldVal) && props.validateEvent) {
         elFormItem.validate?.('change').catch((err) => debugWarn(err))
       }
     },
@@ -328,21 +333,23 @@ export const useSelect = (props, states: States, ctx) => {
     if (props.collapseTags && !props.filterable) return
     nextTick(() => {
       if (!reference.value) return
-      const inputChildNodes = reference.value.$el.childNodes
-      const input = Array.from(inputChildNodes).find(
-        (item) => (item as HTMLElement).tagName === 'INPUT'
+      const input = reference.value.$el.querySelector(
+        'input'
       ) as HTMLInputElement
       const _tags = tags.value
-      const sizeInMap = states.initialInputHeight || 40
-      input.style.height =
-        states.selected.length === 0
-          ? `${sizeInMap}px`
-          : `${Math.max(
+
+      const sizeInMap = getComponentSize(selectSize.value || elForm.size)
+      // it's an inner input so reduce it by 2px.
+      input.style.height = `${
+        (states.selected.length === 0
+          ? sizeInMap
+          : Math.max(
               _tags
                 ? _tags.clientHeight + (_tags.clientHeight > sizeInMap ? 6 : 0)
                 : 0,
               sizeInMap
-            )}px`
+            )) - 2
+      }px`
 
       states.tagInMultiLine = Number.parseFloat(input.style.height) >= sizeInMap
 
@@ -754,6 +761,14 @@ export const useSelect = (props, states: States, ctx) => {
     states.visible = false
   }
 
+  const handleKeydownEscape = (event: KeyboardEvent) => {
+    if (states.visible) {
+      event.preventDefault()
+      event.stopPropagation()
+      states.visible = false
+    }
+  }
+
   const toggleMenu = () => {
     if (props.automaticDropdown) return
     if (!selectDisabled.value) {
@@ -853,6 +868,7 @@ export const useSelect = (props, states: States, ctx) => {
     handleBlur,
     handleClearClick,
     handleClose,
+    handleKeydownEscape,
     toggleMenu,
     selectOption,
     getValueKey,

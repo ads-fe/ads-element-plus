@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { h, inject, ref } from 'vue'
 import { debounce } from 'lodash-unified'
 import { getStyle, hasClass } from '@element-plus/utils'
@@ -96,6 +97,7 @@ function useEvents<T>(props: Partial<TableBodyProps<T>>) {
       cellChild.scrollWidth > cellChild.offsetWidth
     ) {
       createTablePopper(
+        parent?.refs.tableWrapper,
         cell,
         cell.innerText || cell.textContent,
         {

@@ -1,9 +1,9 @@
+// @ts-nocheck
 import { provideGlobalConfig } from '@element-plus/hooks'
+import { INSTALLED_KEY } from '@element-plus/constants'
 import { version } from './version'
-import type { App, Plugin } from 'vue'
+import type { App, Plugin } from '@vue/runtime-core'
 import type { ConfigProviderContext } from '@element-plus/tokens'
-
-const INSTALLED_KEY = Symbol('INSTALLED_KEY')
 
 export const makeInstaller = (components: Plugin[] = []) => {
   const install = (app: App, options?: ConfigProviderContext) => {

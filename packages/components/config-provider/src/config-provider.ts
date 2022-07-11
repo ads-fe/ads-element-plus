@@ -1,6 +1,6 @@
 import { defineComponent, renderSlot, watch } from 'vue'
 import { buildProps, definePropType } from '@element-plus/utils'
-import { provideGlobalConfig } from '@element-plus/hooks'
+import { provideGlobalConfig, useSizeProp } from '@element-plus/hooks'
 
 import type { ExtractPropTypes } from 'vue'
 import type { ExperimentalFeatures } from '@element-plus/tokens'
@@ -21,10 +21,7 @@ export const configProviderProps = buildProps({
     type: definePropType<Language>(Object),
   },
 
-  size: {
-    type: String,
-    values: ['large', '', 'small'],
-  },
+  size: useSizeProp,
 
   button: {
     type: definePropType<ButtonConfigContext>(Object),
@@ -44,17 +41,16 @@ export const configProviderProps = buildProps({
     type: definePropType<MessageConfigContext>(Object),
   },
 
-  zIndex: {
-    type: Number,
-  },
+  zIndex: Number,
 
   namespace: {
     type: String,
     default: 'el',
   },
 } as const)
+export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
 
-export default defineComponent({
+const ConfigProvider = defineComponent({
   name: 'ElConfigProvider',
   props: configProviderProps,
 
@@ -70,5 +66,6 @@ export default defineComponent({
     return () => renderSlot(slots, 'default', { config: config?.value })
   },
 })
+export type ConfigProviderInstance = InstanceType<typeof ConfigProvider>
 
-export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
+export default ConfigProvider

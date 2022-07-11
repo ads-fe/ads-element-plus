@@ -52,7 +52,6 @@ time-picker/range
 | end-placeholder       | placeholder for the end time in range mode              | string                                     | —                                                                                   | —           |
 | is-range              | whether to pick a time range                            | boolean                                    | —                                                                                   | false       |
 | arrow-control         | whether to pick time using arrow buttons                | boolean                                    | —                                                                                   | false       |
-| align                 | alignment                                               | left / center / right                      | left                                                                                |
 | popper-class          | custom class name for TimePicker's dropdown             | string                                     | —                                                                                   | —           |
 | range-separator       | range separator                                         | string                                     | —                                                                                   | '-'         |
 | format                | format of the displayed value in the input box          | string                                     | see [date formats](/en-US/component/date-picker#date-formats)                       | HH:mm:ss    |
@@ -68,12 +67,12 @@ time-picker/range
 
 ## Events
 
-| Event Name     | Description                                                | Parameters                                |
-| -------------- | ---------------------------------------------------------- | ----------------------------------------- |
-| change         | triggers when user confirms the value                      | component's binding value                 |
-| blur           | triggers when Input blurs                                  | component instance                        |
-| focus          | triggers when Input focuses                                | component instance                        |
-| visible-change | triggers when the TimePicker's dropdown appears/disappears | true when it appears, and false otherwise |
+| Event Name     | Description                                                | Parameters              |
+| -------------- | ---------------------------------------------------------- | ----------------------- |
+| change         | triggers when user confirms the value                      | `(val: typeof v-model)` |
+| blur           | triggers when Input blurs                                  | `(e: FocusEvent)`       |
+| focus          | triggers when Input focuses                                | `(e: FocusEvent)`       |
+| visible-change | triggers when the TimePicker's dropdown appears/disappears | `(visibility: boolean)` |
 
 ## Methods
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   Comment,
   computed,
@@ -16,7 +17,6 @@ import {
   treeCellPrefix,
 } from '../config'
 import { parseMinWidth, parseWidth } from '../util'
-
 import type { ComputedRef } from 'vue'
 import type { TableColumn, TableColumnCtx } from './defaults'
 
@@ -49,6 +49,13 @@ function useRender<T>(
       parent = parent.vnode.vParent || parent.parent
     }
     return parent
+  })
+  const hasTreeColumn = computed<boolean>(() => {
+    const { store } = instance.parent
+    if (!store) return false
+    const { treeData } = store.states
+    const treeDataValue = treeData.value
+    return treeDataValue && Object.keys(treeDataValue).length > 0
   })
 
   const realWidth = ref(parseWidth(props.width))
@@ -115,6 +122,7 @@ function useRender<T>(
     }
 
     let originRenderCell = column.renderCell
+    const hasTreeColumnValue = hasTreeColumn.value
     // TODO: 这里的实现调整
     if (column.type === 'expand') {
       // 对于展开行，renderCell 不允许配置的。在上一步中已经设置过，这里需要简单封装一下。
@@ -142,7 +150,9 @@ function useRender<T>(
         } else {
           children = originRenderCell(data)
         }
-        const prefix = treeCellPrefix(data)
+        const shouldCreatePlaceholder =
+          hasTreeColumnValue && data.cellIndex === 0
+        const prefix = treeCellPrefix(data, shouldCreatePlaceholder)
         const props = {
           class: 'cell',
           style: {},

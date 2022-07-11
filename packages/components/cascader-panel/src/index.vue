@@ -14,6 +14,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import {
   computed,
   defineComponent,
@@ -320,10 +321,6 @@ export default defineComponent({
         }
         case EVENT_CODE.enter:
           checkNode(target)
-          break
-        case EVENT_CODE.esc:
-        case EVENT_CODE.tab:
-          emit('close')
           break
       }
     }

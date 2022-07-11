@@ -6,7 +6,7 @@
     :placement="placement"
     :show-arrow="false"
     :stop-popper-mouse-event="false"
-    append-to-body
+    teleported
     effect="light"
     pure
     :popper-class="ns.b()"
@@ -87,6 +87,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import { computed, defineComponent, getCurrentInstance, ref, watch } from 'vue'
 import ElCheckbox from '@element-plus/components/checkbox'
 import { ElIcon } from '@element-plus/components/icon'
